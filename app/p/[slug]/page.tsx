@@ -42,17 +42,17 @@ export default async function Page({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '40px 16px',
+        padding: '20px 12px',
       }}
     >
       <div
         style={{
           width: '100%',
-          maxWidth: 420,
+          maxWidth: 360, // 🔥 카드 폭 줄임
           background: '#ffffff',
-          borderRadius: 32,
+          borderRadius: 24,
           overflow: 'hidden',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.12)',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.12)',
         }}
       >
         {/* 상단 상태바 */}
@@ -65,20 +65,20 @@ export default async function Page({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 14,
-            padding: '24px 20px',
+            gap: 10,
+            padding: '18px',
           }}
         >
           <div
             style={{
-              width: 56,
-              height: 56,
+              width: 44,
+              height: 44,
               borderRadius: '50%',
               background: '#ffffff',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              fontSize: 30,
+              fontSize: 22,
               fontWeight: 700,
               color: passed ? '#16a34a' : '#dc2626',
             }}
@@ -88,9 +88,8 @@ export default async function Page({
 
           <div
             style={{
-              fontSize: 28,
+              fontSize: 22,
               fontWeight: 800,
-              letterSpacing: '-0.5px',
             }}
           >
             {passed ? '출입 가능' : '출입 불가'}
@@ -101,7 +100,7 @@ export default async function Page({
         <div
           style={{
             width: '100%',
-            height: 420,
+            height: 300, // 🔥 사진 줄임
             background: '#e5e7eb',
           }}
         >
@@ -113,19 +112,16 @@ export default async function Page({
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                display: 'block',
               }}
             />
           ) : (
             <div
               style={{
-                width: '100%',
-                height: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                height: '100%',
                 color: '#6b7280',
-                fontSize: 18,
               }}
             >
               사진 없음
@@ -133,142 +129,65 @@ export default async function Page({
           )}
         </div>
 
-        {/* 하단 정보 */}
+        {/* 정보 영역 */}
         <div
           style={{
-            padding: '28px 28px 32px',
+            padding: '22px',
             textAlign: 'center',
           }}
         >
+          {/* 이름 */}
           <h1
             style={{
               margin: 0,
-              fontSize: 44,
+              fontSize: 32, // 🔥 줄임
               fontWeight: 800,
-              letterSpacing: '-1px',
               color: '#111827',
             }}
           >
             {data.name}
           </h1>
 
+          {/* 역할 */}
           <p
             style={{
-              margin: '12px 0 0',
-              fontSize: 22,
+              marginTop: 8,
+              fontSize: 18,
               color: '#6b7280',
-              fontWeight: 500,
             }}
           >
             {data.role || '-'}
           </p>
 
+          {/* 구분선 */}
           <div
             style={{
-              marginTop: 28,
-              paddingTop: 24,
+              marginTop: 20,
               borderTop: '1px solid #e5e7eb',
+              paddingTop: 18,
               textAlign: 'left',
             }}
           >
             {/* 회사 */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-                marginBottom: 18,
-              }}
-            >
-              <div
-                style={{
-                  width: 46,
-                  height: 46,
-                  borderRadius: 12,
-                  background: '#eff6ff',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: 24,
-                }}
-              >
-                🏢
-              </div>
-              <div
-                style={{
-                  fontSize: 18,
-                  color: '#1f2937',
-                  fontWeight: 500,
-                }}
-              >
-                {data.company || '-'}
+            <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
+              <div style={{ fontSize: 20 }}>🏢</div>
+              <div style={{ fontSize: 16 }}>{data.company || '-'}</div>
+            </div>
+
+            {/* 출입시간 */}
+            <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
+              <div style={{ fontSize: 20 }}>🕒</div>
+              <div style={{ fontSize: 16 }}>
+                {formatDateTime(data.site_entered_at)}
               </div>
             </div>
 
-            {/* 출입 시간 */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-                marginBottom: 18,
-              }}
-            >
-              <div
-                style={{
-                  width: 46,
-                  height: 46,
-                  borderRadius: 12,
-                  background: '#eff6ff',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: 24,
-                }}
-              >
-                🕒
-              </div>
-              <div
-                style={{
-                  fontSize: 18,
-                  color: '#1f2937',
-                  fontWeight: 500,
-                }}
-              >
-                현장 출입: {formatDateTime(data.site_entered_at)}
-              </div>
-            </div>
-
-            {/* 시험 결과 */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-              }}
-            >
-              <div
-                style={{
-                  width: 46,
-                  height: 46,
-                  borderRadius: 12,
-                  background: passed ? '#ecfdf3' : '#fef3f2',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: 24,
-                }}
-              >
+            {/* 시험결과 */}
+            <div style={{ display: 'flex', gap: 12 }}>
+              <div style={{ fontSize: 20 }}>
                 {passed ? '✅' : '❌'}
               </div>
-              <div
-                style={{
-                  fontSize: 18,
-                  color: '#1f2937',
-                  fontWeight: 500,
-                }}
-              >
-                시험 결과:{' '}
+              <div style={{ fontSize: 16 }}>
                 <span
                   style={{
                     color: passed ? '#16a34a' : '#dc2626',
