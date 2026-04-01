@@ -48,7 +48,7 @@ export default async function Page({
       <div
         style={{
           width: '100%',
-          maxWidth: 360, // 🔥 카드 폭 줄임
+          maxWidth: 360,
           background: '#ffffff',
           borderRadius: 24,
           overflow: 'hidden',
@@ -100,7 +100,7 @@ export default async function Page({
         <div
           style={{
             width: '100%',
-            height: 300, // 🔥 사진 줄임
+            height: 300,
             background: '#e5e7eb',
           }}
         >
@@ -140,7 +140,7 @@ export default async function Page({
           <h1
             style={{
               margin: 0,
-              fontSize: 32, // 🔥 줄임
+              fontSize: 32,
               fontWeight: 800,
               color: '#111827',
             }}
@@ -171,14 +171,16 @@ export default async function Page({
             {/* 회사 */}
             <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
               <div style={{ fontSize: 20 }}>🏢</div>
-              <div style={{ fontSize: 16 }}>{data.company || '-'}</div>
+              <div style={{ fontSize: 16, color: '#111827' }}>
+                회사: {data.company || '-'}
+              </div>
             </div>
 
             {/* 출입시간 */}
             <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
               <div style={{ fontSize: 20 }}>🕒</div>
-              <div style={{ fontSize: 16 }}>
-                {formatDateTime(data.site_entered_at)}
+              <div style={{ fontSize: 16, color: '#111827' }}>
+                현장 출입: {formatDateTime(data.site_entered_at)}
               </div>
             </div>
 
@@ -188,6 +190,7 @@ export default async function Page({
                 {passed ? '✅' : '❌'}
               </div>
               <div style={{ fontSize: 16 }}>
+                시험 결과:{' '}
                 <span
                   style={{
                     color: passed ? '#16a34a' : '#dc2626',
