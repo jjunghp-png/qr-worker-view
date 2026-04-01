@@ -184,13 +184,15 @@ export default async function Page({
               </div>
             </div>
 
-            {/* 시험결과 */}
+            {/* 시험결과 (여기만 수정됨) */}
             <div style={{ display: 'flex', gap: 12 }}>
               <div style={{ fontSize: 20 }}>
                 {passed ? '✅' : '❌'}
               </div>
               <div style={{ fontSize: 16 }}>
-                시험 결과:{' '}
+                <span style={{ color: '#111827' }}>
+                  시험 결과:{' '}
+                </span>
                 <span
                   style={{
                     color: passed ? '#16a34a' : '#dc2626',
