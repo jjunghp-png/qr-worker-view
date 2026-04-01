@@ -176,6 +176,14 @@ export default async function Page({
               </div>
             </div>
 
+            {/* 현장명 */}
+            <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
+              <div style={{ fontSize: 20 }}>🏗️</div>
+              <div style={{ fontSize: 16, color: '#111827' }}>
+                현장명: 신길5동 지역주택조합 공동주택 신축공사
+              </div>
+            </div>
+
             {/* 출입시간 */}
             <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
               <div style={{ fontSize: 20 }}>🕒</div>
@@ -184,7 +192,7 @@ export default async function Page({
               </div>
             </div>
 
-            {/* 시험결과 (여기만 수정됨) */}
+            {/* 시험결과 */}
             <div style={{ display: 'flex', gap: 12 }}>
               <div style={{ fontSize: 20 }}>
                 {passed ? '✅' : '❌'}
